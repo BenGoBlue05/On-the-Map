@@ -33,7 +33,7 @@ class ViewController: UIViewController {
             self.setLoggingIn(false)
             switch res {
             case .success:
-                print("success")
+                self.performSegue(withIdentifier: "tabSegue", sender: nil)
                 break
             case .error(let errorMessage):
                 self.showLoginFailed(errorMessage)
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
     func showLoginFailed(_ message: String) {
         let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        show(alertVC, sender: nil)
+        present(alertVC, animated: true)
     }
 }
 

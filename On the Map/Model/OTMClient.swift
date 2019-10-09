@@ -13,21 +13,37 @@ class OTMClient {
     static let shared = OTMClient()
     
     static let genericError = "An error occurred"
-    enum Endpoints {
+    enum Endpoints: String {
         static let base = "https://onthemap-api.udacity.com/v1"
-        case login
-        
-        
-        var stringValue: String {
-            switch  self {
-            case .login:
-                return "\(Endpoints.base)/session"
-            }
-        }
+        case login = "session"
+        case studentLocations = "StudentLocation?limit=100&order=-updatedAt"
         
         var url: URL {
-            return URL(string: stringValue)!
+            return URL(string: "\(Endpoints.base)/\(rawValue)")!
         }
+    }
+    
+    func getRequest<T: Decodable>(_ url: URL, _ completion: @escaping (OTMResult<T>) -> Void) {
+        let task = URLSession.shared.dataTask(with: url){ data, response, error in
+            let errorDescription = error?.localizedDescription ?? OTMClient.genericError
+            var result: OTMResult<T>!
+            if let data = data {
+                let decoder = JSONDecoder()
+                do {
+                    let responseObject = try decoder.decode(T.self, from: data)
+                    result = OTMResult.success(responseObject)
+                } catch {
+                    let errorResponse = try? decoder.decode(OTMErrorResponse.self, from: data)
+                    result = OTMResult.error(errorResponse?.error ?? errorDescription)
+                }
+            } else {
+                result = OTMResult.error(errorDescription)
+            }
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }
+        task.resume()
     }
     
     func login(_ username: String, _ password: String, _ completion: @escaping (OTMResult<Bool>) -> Void) {
@@ -69,4 +85,9 @@ class OTMClient {
         }
         task.resume()
     }
+    
+    func getStudentLocations(_ completion: @escaping (OTMResult<StudentLocationResponse>) -> Void){
+        getRequest(Endpoints.studentLocations.url, completion)
+    }
+
 }

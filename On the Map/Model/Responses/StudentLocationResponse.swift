@@ -1,5 +1,5 @@
 //
-//  OTMSession.swift
+//  StudentLocationResponse.swift
 //  On the Map
 //
 //  Created by Ben Lewis on 10/9/19.
@@ -8,10 +8,6 @@
 
 import Foundation
 
-class OTMSession {
-    
-    static let shared = OTMSession()
-    
-    var sessionId  = ""
-    var accountId = ""
+struct StudentLocationResponse: Codable {
+    let results: [StudentInformation]
 }

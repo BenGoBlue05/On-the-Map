@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE031FC5234E786A0047CE9F /* StudentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE031FC4234E786A0047CE9F /* StudentLocationViewController.swift */; };
 		CEEE16AD234D36120060FAD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE16AC234D36120060FAD7 /* AppDelegate.swift */; };
 		CEEE16AF234D36120060FAD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE16AE234D36120060FAD7 /* SceneDelegate.swift */; };
 		CEEE16B1234D36120060FAD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE16B0234D36120060FAD7 /* ViewController.swift */; };
@@ -19,9 +20,12 @@
 		CEF5560B234E36FE00D8AEE7 /* OTMSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF5560A234E36FE00D8AEE7 /* OTMSession.swift */; };
 		CEF5560D234E380100D8AEE7 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF5560C234E380100D8AEE7 /* LoginResponse.swift */; };
 		CEF55610234E3A3900D8AEE7 /* OTMErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF5560F234E3A3900D8AEE7 /* OTMErrorResponse.swift */; };
+		CEF55612234E53CC00D8AEE7 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF55611234E53CC00D8AEE7 /* StudentInformation.swift */; };
+		CEF55614234E54FE00D8AEE7 /* StudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF55613234E54FE00D8AEE7 /* StudentLocationResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE031FC4234E786A0047CE9F /* StudentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationViewController.swift; sourceTree = "<group>"; };
 		CEEE16A9234D36120060FAD7 /* On the Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On the Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEEE16AC234D36120060FAD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEEE16AE234D36120060FAD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +40,8 @@
 		CEF5560A234E36FE00D8AEE7 /* OTMSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTMSession.swift; sourceTree = "<group>"; };
 		CEF5560C234E380100D8AEE7 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		CEF5560F234E3A3900D8AEE7 /* OTMErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTMErrorResponse.swift; sourceTree = "<group>"; };
+		CEF55611234E53CC00D8AEE7 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
+		CEF55613234E54FE00D8AEE7 /* StudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +76,6 @@
 			children = (
 				CEEE16AC234D36120060FAD7 /* AppDelegate.swift */,
 				CEEE16AE234D36120060FAD7 /* SceneDelegate.swift */,
-				CEF5560A234E36FE00D8AEE7 /* OTMSession.swift */,
 				CEF55601234E243A00D8AEE7 /* Controller */,
 				CEEE16B2234D36120060FAD7 /* Main.storyboard */,
 				CEEE16B5234D36140060FAD7 /* Assets.xcassets */,
@@ -84,6 +89,7 @@
 		CEF55601234E243A00D8AEE7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CE031FC4234E786A0047CE9F /* StudentLocationViewController.swift */,
 				CEEE16B0234D36120060FAD7 /* ViewController.swift */,
 			);
 			path = Controller;
@@ -92,9 +98,10 @@
 		CEF55606234E29A700D8AEE7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CEF55615234E554600D8AEE7 /* Data */,
 				CEF55602234E283B00D8AEE7 /* OTMClient.swift */,
-				CEF55609234E343800D8AEE7 /* Requests */,
 				CEF55604234E292500D8AEE7 /* OTMResult.swift */,
+				CEF55609234E343800D8AEE7 /* Requests */,
 				CEF5560E234E3A2100D8AEE7 /* Responses */,
 			);
 			path = Model;
@@ -113,8 +120,18 @@
 			children = (
 				CEF5560C234E380100D8AEE7 /* LoginResponse.swift */,
 				CEF5560F234E3A3900D8AEE7 /* OTMErrorResponse.swift */,
+				CEF55613234E54FE00D8AEE7 /* StudentLocationResponse.swift */,
 			);
 			path = Responses;
+			sourceTree = "<group>";
+		};
+		CEF55615234E554600D8AEE7 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CEF5560A234E36FE00D8AEE7 /* OTMSession.swift */,
+				CEF55611234E53CC00D8AEE7 /* StudentInformation.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,9 +210,12 @@
 				CEEE16AD234D36120060FAD7 /* AppDelegate.swift in Sources */,
 				CEF5560B234E36FE00D8AEE7 /* OTMSession.swift in Sources */,
 				CEF55608234E2D8B00D8AEE7 /* LoginRequest.swift in Sources */,
+				CE031FC5234E786A0047CE9F /* StudentLocationViewController.swift in Sources */,
 				CEF55603234E283B00D8AEE7 /* OTMClient.swift in Sources */,
 				CEF5560D234E380100D8AEE7 /* LoginResponse.swift in Sources */,
 				CEF55610234E3A3900D8AEE7 /* OTMErrorResponse.swift in Sources */,
+				CEF55612234E53CC00D8AEE7 /* StudentInformation.swift in Sources */,
+				CEF55614234E54FE00D8AEE7 /* StudentLocationResponse.swift in Sources */,
 				CEEE16AF234D36120060FAD7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
