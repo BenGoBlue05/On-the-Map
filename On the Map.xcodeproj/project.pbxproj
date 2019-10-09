@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		CE031FC5234E786A0047CE9F /* StudentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE031FC4234E786A0047CE9F /* StudentLocationViewController.swift */; };
+		CE031FC7234E892B0047CE9F /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE031FC6234E892B0047CE9F /* StudentListViewController.swift */; };
 		CEEE16AD234D36120060FAD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE16AC234D36120060FAD7 /* AppDelegate.swift */; };
 		CEEE16AF234D36120060FAD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE16AE234D36120060FAD7 /* SceneDelegate.swift */; };
-		CEEE16B1234D36120060FAD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE16B0234D36120060FAD7 /* ViewController.swift */; };
+		CEEE16B1234D36120060FAD7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE16B0234D36120060FAD7 /* LoginViewController.swift */; };
 		CEEE16B4234D36120060FAD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEEE16B2234D36120060FAD7 /* Main.storyboard */; };
 		CEEE16B6234D36140060FAD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEEE16B5234D36140060FAD7 /* Assets.xcassets */; };
 		CEEE16B9234D36140060FAD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEEE16B7234D36140060FAD7 /* LaunchScreen.storyboard */; };
@@ -26,10 +27,11 @@
 
 /* Begin PBXFileReference section */
 		CE031FC4234E786A0047CE9F /* StudentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationViewController.swift; sourceTree = "<group>"; };
+		CE031FC6234E892B0047CE9F /* StudentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListViewController.swift; sourceTree = "<group>"; };
 		CEEE16A9234D36120060FAD7 /* On the Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On the Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEEE16AC234D36120060FAD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEEE16AE234D36120060FAD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CEEE16B0234D36120060FAD7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CEEE16B0234D36120060FAD7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CEEE16B3234D36120060FAD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEEE16B5234D36140060FAD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEEE16B8234D36140060FAD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -90,7 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				CE031FC4234E786A0047CE9F /* StudentLocationViewController.swift */,
-				CEEE16B0234D36120060FAD7 /* ViewController.swift */,
+				CEEE16B0234D36120060FAD7 /* LoginViewController.swift */,
+				CE031FC6234E892B0047CE9F /* StudentListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -206,7 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEF55605234E292500D8AEE7 /* OTMResult.swift in Sources */,
-				CEEE16B1234D36120060FAD7 /* ViewController.swift in Sources */,
+				CEEE16B1234D36120060FAD7 /* LoginViewController.swift in Sources */,
 				CEEE16AD234D36120060FAD7 /* AppDelegate.swift in Sources */,
 				CEF5560B234E36FE00D8AEE7 /* OTMSession.swift in Sources */,
 				CEF55608234E2D8B00D8AEE7 /* LoginRequest.swift in Sources */,
@@ -217,6 +220,7 @@
 				CEF55612234E53CC00D8AEE7 /* StudentInformation.swift in Sources */,
 				CEF55614234E54FE00D8AEE7 /* StudentLocationResponse.swift in Sources */,
 				CEEE16AF234D36120060FAD7 /* SceneDelegate.swift in Sources */,
+				CE031FC7234E892B0047CE9F /* StudentListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,17 +26,10 @@ class StudentLocationViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    func showError(_ message: String) {
-        let alertVC = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alertVC, animated: true)
-    }
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseId = "pin"
         
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
@@ -52,13 +45,26 @@ class StudentLocationViewController: UIViewController, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
-            let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
-                let url = URL(string: toOpen)!
-                if (app.canOpenURL(url)){
-                    app.open(url)
-                }
+                openUrl(URL(string: toOpen)!)
             }
         }
     }
 }
+
+extension UIViewController {
+    func openUrl(_ url: URL){
+        let app = UIApplication.shared
+        if (app.canOpenURL(url)){
+            app.open(url)
+        }
+    }
+    
+    func showError(_ message: String) {
+        let alertVC = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertVC, animated: true)
+    }
+}
+
+
