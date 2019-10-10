@@ -95,6 +95,27 @@ class OTMClient {
         task.resume()
     }
     
+    func logOut(_ completion: @escaping (OTMResult<LogOutResponse>) -> Void){
+        var request = URLRequest(url: URL(string: "https://onthemap-api.udacity.com/v1/session")!)
+        request.httpMethod = "DELETE"
+        var xsrfCookie: HTTPCookie? = nil
+        for cookie in HTTPCookieStorage.shared.cookies! {
+          if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+          request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          if let data = data {
+              let subData = data.subdata(in: 5..<data.count)
+              self.handleResponse(subData, error, completion)
+          } else {
+              self.handleResponse(data, error, completion)
+          }
+        }
+        task.resume()
+    }
+    
     func getStudentLocations(_ completion: @escaping (OTMResult<StudentLocationResponse>) -> Void){
         getRequest(Endpoints.studentLocations.url, completion)
     }

@@ -18,6 +18,6 @@ struct UdacityAccount: Codable {
     let key: String
 }
 
-struct  LoginSession: Codable {
+struct LoginSession: Codable {
     let id: String
 }

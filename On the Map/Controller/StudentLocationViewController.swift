@@ -13,6 +13,11 @@ class StudentLocationViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.navigationController?.navigationBar.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         OTMClient.shared.getStudentLocations { result in
@@ -48,6 +53,14 @@ class StudentLocationViewController: UIViewController, MKMapViewDelegate {
             if let toOpen = view.annotation?.subtitle! {
                 openUrl(URL(string: toOpen)!)
             }
+        }
+    }
+    
+    
+    @IBAction func onLogOutClicked(_ sender: Any) {
+        OTMClient.shared.logOut { _ in
+            OTMSession.shared.clearSession()
+            self.tabBarController?.navigationController?.popViewController(animated: true)
         }
     }
 }

@@ -18,6 +18,13 @@ class OTMSession {
     var studentLocations = [StudentInformation]()
     var pointAnnotations = [MKPointAnnotation]()
     
+    func clearSession(){
+        sessionId = ""
+        accountId = ""
+        studentLocations.removeAll()
+        pointAnnotations.removeAll()
+    }
+    
     func setStudentLocations(_ info: [StudentInformation]) {
         studentLocations = info
         pointAnnotations = info.map(self.createMKAnnotation(_:))

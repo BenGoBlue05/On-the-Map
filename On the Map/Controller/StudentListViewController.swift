@@ -42,4 +42,12 @@ class StudentListViewController: UIViewController, UITableViewDataSource, UITabl
         let mediaUrl = OTMSession.shared.studentLocations[indexPath.row].mediaURL
         openUrl(URL(string: mediaUrl)!)
     }
+    
+    @IBAction func onLogOutClicked(_ sender: Any) {
+        OTMClient.shared.logOut { _ in
+            OTMSession.shared.clearSession()
+            self.tabBarController?.navigationController?.popViewController(animated: true)
+        }
+    }
+    
 }
