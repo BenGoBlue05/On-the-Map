@@ -23,8 +23,6 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
-
     @IBAction func login(_ sender: UIButton) {
         guard let username = emailTf.text else { return }
         guard let pw = passwordTf.text else { return }
@@ -36,7 +34,7 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "tabSegue", sender: nil)
                 break
             case .error(let errorMessage):
-                self.showLoginFailed(errorMessage)
+                self.showError(errorMessage, "Login Failed")
             }
         }
     }
@@ -50,12 +48,6 @@ class LoginViewController: UIViewController {
         emailTf.isEnabled = !loggingIn
         passwordTf.isEnabled = !loggingIn
         loginButton.isEnabled = !loggingIn
-    }
-    
-    func showLoginFailed(_ message: String) {
-        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alertVC, animated: true)
     }
 }
 

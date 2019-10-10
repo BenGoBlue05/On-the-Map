@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import CoreLocation
+import MapKit
 
 class OTMClient {
     
     static let shared = OTMClient()
     
     static let genericError = "An error occurred"
+    
     enum Endpoints: String {
         static let base = "https://onthemap-api.udacity.com/v1"
         case login = "session"
@@ -25,25 +28,53 @@ class OTMClient {
     
     func getRequest<T: Decodable>(_ url: URL, _ completion: @escaping (OTMResult<T>) -> Void) {
         let task = URLSession.shared.dataTask(with: url){ data, response, error in
-            let errorDescription = error?.localizedDescription ?? OTMClient.genericError
-            var result: OTMResult<T>!
-            if let data = data {
-                let decoder = JSONDecoder()
-                do {
-                    let responseObject = try decoder.decode(T.self, from: data)
-                    result = OTMResult.success(responseObject)
-                } catch {
-                    let errorResponse = try? decoder.decode(OTMErrorResponse.self, from: data)
-                    result = OTMResult.error(errorResponse?.error ?? errorDescription)
-                }
-            } else {
-                result = OTMResult.error(errorDescription)
-            }
-            DispatchQueue.main.async {
-                completion(result)
-            }
+            self.handleResponse(data, response, error, completion)
         }
         task.resume()
+    }
+    
+    func postRequest<B : Encodable, R: Decodable>(_ url: URL, body: B, _ completion: @escaping (OTMResult<R>) -> Void) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = try! JSONEncoder().encode(body)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let task = URLSession.shared.dataTask(with: url){ data, response, error in
+            self.handleResponse(data, response, error, completion)
+        }
+        task.resume()
+    }
+    
+    func handleResponse<T: Decodable>(_ data: Data?, _ response: URLResponse?, _ error: Error? ,_ completion: @escaping (OTMResult<T>) -> Void) {
+        let errorDescription = error?.localizedDescription ?? OTMClient.genericError
+        var result: OTMResult<T>!
+        if let data = data {
+            let decoder = JSONDecoder()
+            do {
+                let responseObject = try decoder.decode(T.self, from: data)
+                result = OTMResult.success(responseObject)
+            } catch {
+                let errorResponse = try? decoder.decode(OTMErrorResponse.self, from: data)
+                result = OTMResult.error(errorResponse?.error ?? errorDescription)
+            }
+        } else {
+            result = OTMResult.error(errorDescription)
+        }
+        DispatchQueue.main.async {
+            completion(result)
+        }
+    }
+    
+    func getLocation(_ location: String, _ completion: @escaping (OTMResult<MKMapItem>) -> Void) {
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = location
+        let search = MKLocalSearch(request: request)
+        search.start { response, error in
+            if let item = response?.mapItems.first {
+                completion(OTMResult.success(item))
+            } else {
+                completion(OTMResult.error(error?.localizedDescription ?? OTMClient.genericError))
+            }
+        }
     }
     
     func login(_ username: String, _ password: String, _ completion: @escaping (OTMResult<Bool>) -> Void) {

@@ -24,10 +24,8 @@ class OTMSession {
     }
     
     func createMKAnnotation(_ info: StudentInformation) -> MKPointAnnotation {
-        let lat = CLLocationDegrees(info.latitude)
-        let lon = CLLocationDegrees(info.longitude)
         let res = MKPointAnnotation()
-        res.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        res.coordinate = CLLocationCoordinate2D(latitude: info.latitude, longitude: info.longitude)
         res.title = "\(info.firstName) \(info.lastName)"
         res.subtitle = info.mediaURL
         return res

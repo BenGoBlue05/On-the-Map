@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CE031FC5234E786A0047CE9F /* StudentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE031FC4234E786A0047CE9F /* StudentLocationViewController.swift */; };
 		CE031FC7234E892B0047CE9F /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE031FC6234E892B0047CE9F /* StudentListViewController.swift */; };
+		CE94B1B7234F70610011A927 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94B1B6234F70610011A927 /* UIViewController+Extension.swift */; };
+		CE94B1BA234F7B980011A927 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94B1B9234F7B980011A927 /* AddLocationViewController.swift */; };
 		CEEE16AD234D36120060FAD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE16AC234D36120060FAD7 /* AppDelegate.swift */; };
 		CEEE16AF234D36120060FAD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE16AE234D36120060FAD7 /* SceneDelegate.swift */; };
 		CEEE16B1234D36120060FAD7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE16B0234D36120060FAD7 /* LoginViewController.swift */; };
@@ -28,6 +30,8 @@
 /* Begin PBXFileReference section */
 		CE031FC4234E786A0047CE9F /* StudentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationViewController.swift; sourceTree = "<group>"; };
 		CE031FC6234E892B0047CE9F /* StudentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListViewController.swift; sourceTree = "<group>"; };
+		CE94B1B6234F70610011A927 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		CE94B1B9234F7B980011A927 /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		CEEE16A9234D36120060FAD7 /* On the Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On the Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEEE16AC234D36120060FAD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEEE16AE234D36120060FAD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +61,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE94B1B8234F76980011A927 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				CEEE16B5234D36140060FAD7 /* Assets.xcassets */,
+				CEEE16B7234D36140060FAD7 /* LaunchScreen.storyboard */,
+				CEEE16B2234D36120060FAD7 /* Main.storyboard */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		CEEE16A0234D36120060FAD7 = {
 			isa = PBXGroup;
 			children = (
@@ -79,9 +93,7 @@
 				CEEE16AC234D36120060FAD7 /* AppDelegate.swift */,
 				CEEE16AE234D36120060FAD7 /* SceneDelegate.swift */,
 				CEF55601234E243A00D8AEE7 /* Controller */,
-				CEEE16B2234D36120060FAD7 /* Main.storyboard */,
-				CEEE16B5234D36140060FAD7 /* Assets.xcassets */,
-				CEEE16B7234D36140060FAD7 /* LaunchScreen.storyboard */,
+				CE94B1B8234F76980011A927 /* Assets */,
 				CEEE16BA234D36140060FAD7 /* Info.plist */,
 				CEF55606234E29A700D8AEE7 /* Model */,
 			);
@@ -91,9 +103,11 @@
 		CEF55601234E243A00D8AEE7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CE031FC4234E786A0047CE9F /* StudentLocationViewController.swift */,
+				CE94B1B9234F7B980011A927 /* AddLocationViewController.swift */,
 				CEEE16B0234D36120060FAD7 /* LoginViewController.swift */,
 				CE031FC6234E892B0047CE9F /* StudentListViewController.swift */,
+				CE031FC4234E786A0047CE9F /* StudentLocationViewController.swift */,
+				CE94B1B6234F70610011A927 /* UIViewController+Extension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -101,9 +115,9 @@
 		CEF55606234E29A700D8AEE7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CEF55615234E554600D8AEE7 /* Data */,
 				CEF55602234E283B00D8AEE7 /* OTMClient.swift */,
 				CEF55604234E292500D8AEE7 /* OTMResult.swift */,
+				CEF55615234E554600D8AEE7 /* Data */,
 				CEF55609234E343800D8AEE7 /* Requests */,
 				CEF5560E234E3A2100D8AEE7 /* Responses */,
 			);
@@ -212,8 +226,10 @@
 				CEEE16B1234D36120060FAD7 /* LoginViewController.swift in Sources */,
 				CEEE16AD234D36120060FAD7 /* AppDelegate.swift in Sources */,
 				CEF5560B234E36FE00D8AEE7 /* OTMSession.swift in Sources */,
+				CE94B1B7234F70610011A927 /* UIViewController+Extension.swift in Sources */,
 				CEF55608234E2D8B00D8AEE7 /* LoginRequest.swift in Sources */,
 				CE031FC5234E786A0047CE9F /* StudentLocationViewController.swift in Sources */,
+				CE94B1BA234F7B980011A927 /* AddLocationViewController.swift in Sources */,
 				CEF55603234E283B00D8AEE7 /* OTMClient.swift in Sources */,
 				CEF5560D234E380100D8AEE7 /* LoginResponse.swift in Sources */,
 				CEF55610234E3A3900D8AEE7 /* OTMErrorResponse.swift in Sources */,

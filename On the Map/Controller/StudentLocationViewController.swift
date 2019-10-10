@@ -51,20 +51,3 @@ class StudentLocationViewController: UIViewController, MKMapViewDelegate {
         }
     }
 }
-
-extension UIViewController {
-    func openUrl(_ url: URL){
-        let app = UIApplication.shared
-        if (app.canOpenURL(url)){
-            app.open(url)
-        }
-    }
-    
-    func showError(_ message: String) {
-        let alertVC = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alertVC, animated: true)
-    }
-}
-
-
