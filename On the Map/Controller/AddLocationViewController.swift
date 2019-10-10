@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
 class AddLocationViewController: UIViewController {
 
@@ -25,6 +26,7 @@ class AddLocationViewController: UIViewController {
     
     @IBOutlet weak var cancelBtn: UIBarButtonItem!
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
@@ -37,6 +39,13 @@ class AddLocationViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
+    }
+    
+    func confirmLocation(_ info: StudentInformation, _ mapItem: MKMapItem) {
+        let vc = storyboard?.instantiateViewController(identifier: "ConfirmLocationViewController") as! ConfirmLocationViewController
+        vc.studentInfo = info
+        vc.mapItem = mapItem
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBAction func findLocation(_ sender: Any) {
@@ -57,6 +66,7 @@ class AddLocationViewController: UIViewController {
                 let lat = coord.latitude
                 let key = OTMSession.shared.accountId
                 let info = StudentInformation(firstName: fn, lastName: ln, longitude: lon, latitude: lat, mapString: loc, mediaURL: url, uniqueKey: key)
+                self.confirmLocation(info, mapItem)
             }
         }
     }
@@ -74,7 +84,7 @@ class AddLocationViewController: UIViewController {
     }
     
     @IBAction func onCancelClicked(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
     func setLoading(_ isLoading: Bool) {

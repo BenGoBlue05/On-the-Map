@@ -20,7 +20,7 @@ class OTMClient {
         static let base = "https://onthemap-api.udacity.com/v1"
         case login = "session"
         case studentLocations = "StudentLocation?limit=100&order=-updatedAt"
-        
+        case addLocation = "StudentLocation"
         var url: URL {
             return URL(string: "\(Endpoints.base)/\(rawValue)")!
         }
@@ -28,23 +28,23 @@ class OTMClient {
     
     func getRequest<T: Decodable>(_ url: URL, _ completion: @escaping (OTMResult<T>) -> Void) {
         let task = URLSession.shared.dataTask(with: url){ data, response, error in
-            self.handleResponse(data, response, error, completion)
+            self.handleResponse(data, error, completion)
         }
         task.resume()
     }
     
-    func postRequest<B : Encodable, R: Decodable>(_ url: URL, body: B, _ completion: @escaping (OTMResult<R>) -> Void) {
+    func postRequest<B : Encodable, R: Decodable>(_ url: URL, _ body: B, _ completion: @escaping (OTMResult<R>) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = try! JSONEncoder().encode(body)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let task = URLSession.shared.dataTask(with: url){ data, response, error in
-            self.handleResponse(data, response, error, completion)
+        let task = URLSession.shared.dataTask(with: request){ data, response, error in
+            self.handleResponse(data, error, completion)
         }
         task.resume()
     }
     
-    func handleResponse<T: Decodable>(_ data: Data?, _ response: URLResponse?, _ error: Error? ,_ completion: @escaping (OTMResult<T>) -> Void) {
+    func handleResponse<T: Decodable>(_ data: Data?, _ error: Error? ,_ completion: @escaping (OTMResult<T>) -> Void) {
         let errorDescription = error?.localizedDescription ?? OTMClient.genericError
         var result: OTMResult<T>!
         if let data = data {
@@ -77,7 +77,7 @@ class OTMClient {
         }
     }
     
-    func login(_ username: String, _ password: String, _ completion: @escaping (OTMResult<Bool>) -> Void) {
+    func login(_ username: String, _ password: String, _ completion: @escaping (OTMResult<LoginResponse>) -> Void) {
         var request = URLRequest(url: Endpoints.login.url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -85,33 +85,11 @@ class OTMClient {
         let body = LoginRequest(udacity: LoginCredentials(username: username, password: password))
         request.httpBody = try! JSONEncoder().encode(body)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            let errorDescription = error?.localizedDescription ?? OTMClient.genericError
-            guard let data = data else {
-                DispatchQueue.main.async {
-                    completion(OTMResult.error(errorDescription))
-                }
-                return
-            }
-            let subData = data.subdata(in: 5..<data.count)
-            let decoder = JSONDecoder()
-            do {
-                let creds = try decoder.decode(LoginResponse.self, from: subData)
-                OTMSession.shared.accountId = creds.account.key
-                OTMSession.shared.sessionId = creds.session.id
-                DispatchQueue.main.async {
-                    completion(OTMResult.success(true))
-                }
-            } catch {
-                do {
-                    let errorResponse = try decoder.decode(OTMErrorResponse.self, from: subData)
-                    DispatchQueue.main.async {
-                        completion(OTMResult.error(errorResponse.error ?? errorDescription))
-                    }
-                } catch {
-                    DispatchQueue.main.async {
-                        completion(OTMResult.error(errorDescription))
-                    }
-                }
+            if let data = data {
+                let subData = data.subdata(in: 5..<data.count)
+                self.handleResponse(subData, error, completion)
+            } else {
+                self.handleResponse(data, error, completion)
             }
         }
         task.resume()
@@ -119,6 +97,10 @@ class OTMClient {
     
     func getStudentLocations(_ completion: @escaping (OTMResult<StudentLocationResponse>) -> Void){
         getRequest(Endpoints.studentLocations.url, completion)
+    }
+    
+    func addStudentLocation(_ info: StudentInformation, _ completion: @escaping (OTMResult<AddLocationResponse>) -> Void) {
+        postRequest(Endpoints.addLocation.url, info, completion)
     }
 
 }

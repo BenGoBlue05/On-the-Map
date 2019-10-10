@@ -30,7 +30,9 @@ class LoginViewController: UIViewController {
         OTMClient.shared.login(username, pw){res in
             self.setLoggingIn(false)
             switch res {
-            case .success:
+            case .success(let creds):
+                OTMSession.shared.accountId = creds.account.key
+                OTMSession.shared.sessionId = creds.session.id
                 self.performSegue(withIdentifier: "tabSegue", sender: nil)
                 break
             case .error(let errorMessage):

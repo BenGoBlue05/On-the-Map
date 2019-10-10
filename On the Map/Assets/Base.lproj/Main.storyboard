@@ -241,11 +241,65 @@
                         <outlet property="loadingIndicator" destination="2PE-3g-yJi" id="a9V-we-40S"/>
                         <outlet property="locationTf" destination="W1v-36-oYB" id="2hk-M0-Kb7"/>
                         <outlet property="mediaUrlTf" destination="PwY-RD-X8v" id="NSW-HL-dLc"/>
+                        <segue destination="74o-w9-5Do" kind="show" identifier="confirmLocationSegue" id="Ggh-ls-juC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Kj-gp-GTD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7762" y="77"/>
+        </scene>
+        <!--Add Location-->
+        <scene sceneID="3IC-Bh-z0G">
+            <objects>
+                <viewController storyboardIdentifier="ConfirmLocationViewController" id="74o-w9-5Do" customClass="ConfirmLocationViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nOh-Ey-kCc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="huU-aV-CvF">
+                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
+                                <connections>
+                                    <outlet property="delegate" destination="74o-w9-5Do" id="vw2-oT-RXU"/>
+                                </connections>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDt-gS-CDf">
+                                <rect key="frame" x="40" y="689" width="334" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="FINISH">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addLocation:" destination="74o-w9-5Do" eventType="touchUpInside" id="2dL-L0-qwZ"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="d1d-CY-s3s">
+                                <rect key="frame" x="197" y="645" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="pMm-LN-ZXY" firstAttribute="bottom" secondItem="HDt-gS-CDf" secondAttribute="bottom" constant="40" id="0J1-RJ-yxt"/>
+                            <constraint firstItem="HDt-gS-CDf" firstAttribute="leading" secondItem="pMm-LN-ZXY" secondAttribute="leading" constant="40" id="3Z6-Tr-pTi"/>
+                            <constraint firstItem="HDt-gS-CDf" firstAttribute="top" secondItem="d1d-CY-s3s" secondAttribute="bottom" constant="24" id="GCb-Ja-b0f"/>
+                            <constraint firstItem="pMm-LN-ZXY" firstAttribute="bottom" secondItem="huU-aV-CvF" secondAttribute="bottom" id="NMf-fR-YXX"/>
+                            <constraint firstItem="huU-aV-CvF" firstAttribute="top" secondItem="pMm-LN-ZXY" secondAttribute="top" id="US1-yx-bsC"/>
+                            <constraint firstItem="pMm-LN-ZXY" firstAttribute="trailing" secondItem="huU-aV-CvF" secondAttribute="trailing" id="YUB-vE-9fM"/>
+                            <constraint firstItem="huU-aV-CvF" firstAttribute="leading" secondItem="pMm-LN-ZXY" secondAttribute="leading" id="sfs-AG-o32"/>
+                            <constraint firstItem="d1d-CY-s3s" firstAttribute="centerX" secondItem="nOh-Ey-kCc" secondAttribute="centerX" id="uuT-Dn-bbB"/>
+                            <constraint firstItem="pMm-LN-ZXY" firstAttribute="trailing" secondItem="HDt-gS-CDf" secondAttribute="trailing" constant="40" id="yTT-tK-BuT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pMm-LN-ZXY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Location" id="6MB-R0-BV5"/>
+                    <connections>
+                        <outlet property="finishBtn" destination="HDt-gS-CDf" id="Rhy-Lx-ikS"/>
+                        <outlet property="loadingIndicator" destination="d1d-CY-s3s" id="MQi-Gt-5EL"/>
+                        <outlet property="locMapView" destination="huU-aV-CvF" id="1My-w9-Tck"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kij-sF-E7u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9062" y="76"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ezo-gW-JlO">
@@ -346,6 +400,6 @@
         <image name="world" width="52" height="67"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oLD-Ic-iLH"/>
+        <segue reference="dX3-am-PdA"/>
     </inferredMetricsTieBreakers>
 </document>
