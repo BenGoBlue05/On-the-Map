@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class AddLocationViewController: UIViewController {
+class AddLocationViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var firstNameTf: UITextField!
     
@@ -99,6 +99,11 @@ class AddLocationViewController: UIViewController {
         mediaUrlTf.isEnabled = !isLoading
         addLocationBtn.isEnabled = !isLoading
         cancelBtn.isEnabled = !isLoading
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     
